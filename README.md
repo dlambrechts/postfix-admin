@@ -1,4 +1,5 @@
 # postfix-admin
+
 A linux based mail server running on Docker, working as a releay to Microsoft 365
 
 ## Related links:
@@ -6,7 +7,7 @@ A linux based mail server running on Docker, working as a releay to Microsoft 36
 - <https://github.com/postfixadmin/postfixadmin/tree/master/DOCUMENTS/screenshots>
 - <https://hub.docker.com/_/postfixadmin>
 
-## Run the conteiners with compose:
+## Run the containers with compose:
 
 ```bash
 docker-compose up
@@ -22,4 +23,4 @@ Use that hash on the config.local.php file
 
 Login
 
-- 
+- <http://localhost:8000/login.php>
