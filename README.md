@@ -1,26 +1,36 @@
-# postfix-admin
+# Postfiz
 
 A linux based mail server running on Docker, working as a releay to Microsoft 365
 
-## Related links:
+## Notes
 
-- <https://github.com/postfixadmin/postfixadmin/tree/master/DOCUMENTS/screenshots>
-- <https://hub.docker.com/_/postfixadmin>
-
-## Run the containers with compose:
+Build image:
 
 ```bash
-docker-compose up
+docker build . -t mail-relay
 ```
 
-## Setup admin password
+Run the container:
 
-Generate a hash for the admin user
+```bash
+docker run -d -p 25:25 --restart always mail-relay
+```
 
-- <http://localhost:8000/setup.php>
+Create mail user:
 
-Use that hash on the config.local.php file
+```bash
+useradd -m -s /bin/bash user-name   # Create the user
+passwd user-name                    # Set password
+```
 
-Login
+```bash
+ehlo localhost
+mail from: root@localhost
+rcpt to: test@test.com
+data
+Subject: Re: Some issue
 
-- <http://localhost:8000/login.php>
+Sounds good!
+.
+quit
+```
