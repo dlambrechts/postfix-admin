@@ -4,33 +4,38 @@ A linux based mail server running on Docker, working as a releay to Microsoft 36
 
 ## Notes
 
-Build image:
+# Installation
+
+
+
+Config file: /etc/postfix/main.cf
+
+Log file: /var/log/mail.log
+
+
+Restart Postfix:
 
 ```bash
-docker build . -t mail-relay
+sudo systemctl restart postfix
 ```
 
-Run the container:
+Send test email:
 
 ```bash
-docker run -d -p 25:25 --restart always mail-relay
+echo "Some Email to Test"|mailx -s "Test Email" -r username@eqa.com someemail@gmail.com
 ```
 
-Create mail user:
+Check public IP of the Postfix server:
 
 ```bash
-useradd -m -s /bin/bash user-name   # Create the user
-passwd user-name                    # Set password
+dig +short myip.opendns.com @resolver1.opendns.com
 ```
+
+
+Re configure the server:
 
 ```bash
-ehlo localhost
-mail from: root@localhost
-rcpt to: test@test.com
-data
-Subject: Re: Some issue
-
-Sounds good!
-.
-quit
+sudo dpkg-reconfigure postfix
 ```
+
+
